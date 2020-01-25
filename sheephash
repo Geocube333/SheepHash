@@ -1,0 +1,175 @@
+#!/usr/bin/python
+"""
+
+,~~~@>
+ W~W'
+
+"""
+
+import sys
+import hashlib
+
+hashType=sys.argv[1]
+dictFile=sys.argv[2]
+Hash=sys.argv[3]
+wordDict=[]
+
+##Fills our wordDict array with the contents of an actual word list
+with open(dictFile,'r', encoding="ISO-8859-1") as f:
+  for line in f:
+    wordDict.append(line.replace("\n", ""))
+
+##Checks to see if a file was inserted in place of an actual hash
+if Hash.find("-f", 0, len(Hash)) != -1:
+  Hash=sys.argv[4]
+  with open(Hash, 'r') as f:
+    Hash=f.read()
+    Hash=Hash.replace("\n", "")
+##HASH NOW STORES THE HASHED KEY
+
+def convertTosha3_512():
+  i=0
+  while(i<len(wordDict)):
+    hashsha3_512 = hashlib.sha3_512(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha3_512) = {hashsha3_512.hexdigest()}")
+    check(hashsha3_512, wordDict[i])
+    i+=1
+
+def convertTosha256():
+  i=0
+  while(i<len(wordDict)):
+    hashsha256 = hashlib.sha256(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha256) = {hashsha256.hexdigest()}")
+    check(hashsha256, wordDict[i])
+    i+=1
+
+def convertTosha3_256():
+  i=0
+  while(i<len(wordDict)):
+    hashsha3_256 = hashlib.sha3_256(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha3_256) = {hashsha3_256.hexdigest()}")
+    check(hashsha3_256, wordDict[i])
+    i+=1
+
+def convertToshake_256():
+  i=0
+  while(i<len(wordDict)):
+    hashshake_256 = hashlib.shake_256(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(shake_256) = {hashshake_256.hexdigest()}")
+    check(hashshake_256, wordDict[i])
+    i+=1
+
+def convertTosha3_224():
+  i=0
+  while(i<len(wordDict)):
+    hashsha3_224 = hashlib.sha3_224(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha3_224) = {hashsha3_244.hexdigest()}")
+    check(hashsha3_224, wordDict[i])
+    i+=1
+
+def convertTosha1():
+  i=0
+  while(i<len(wordDict)):
+    hashsha1 = hashlib.sha1(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha1) = {hashsha1.hexdigest()}")
+    check(hashsha1, wordDict[i])
+    i+=1
+
+def convertToblake2b():
+  i=0
+  while(i<len(wordDict)):
+    hashblake2b = hashlib.blake2b(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(blake2b) = {hashblake2b.hexdigest()}")
+    check(hashblake2b, wordDict[i])
+    i+=1
+
+def convertTosha512():
+  i=0
+  while(i<len(wordDict[i])):
+    hashsha512 = hashlib.sha512(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha512) = {hashsha512.hexdigest()}")
+    check(hashsha512, wordDict[i])
+    i+=1
+
+def convertTomd5():
+  i=0
+  while(i<len(wordDict)):
+    hashmd5 = hashlib.md5(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(md5) = {hashmd5.hexdigest()}")
+    check(hashmd5, wordDict[i])
+    i+=1
+
+def convertToshake_128():
+  i=0
+  while(i<len(wordDict)):
+    hashshake_128 = hashlib.shake_128(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(shake_128) = {hashshake_128.hexdigest()}")
+    check(hashshake_128, wordDict[i])
+    i+=1
+
+def convertTosha384():
+  i=0
+  while(i<len(wordDict)):
+    hashsha384 = hashlib.sha384(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha384) = {hashsha384.hexdigest()}")
+    check(hashasha384, wordDict[i])
+    i+=1
+
+def convertTosha224():
+  i=0
+  while(i<len(wordDict)):
+    hashsha224 = hashlib.sha224(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha224) = {hashsha224.hexdigest()}")
+    check(hashsha224, wordDict[i])
+    i+=1
+
+def convertTosha3_384():
+  i=0
+  while(i<len(wordDict)):
+    hashsha3_384 = hashlib.sha3_384(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(sha3_384) = {hashsha3_384.hexdigest()}")
+    check(hashsha3_384, wordDict[i])
+    i+=1
+
+def convertToblake2s():
+  i=0
+  while(i<len(wordDict)):
+    hashblake2s = hashlib.blake2s(wordDict[i].encode())
+    print(f"Word = {wordDict[i]}\t: Hash(blake2s) = {hashblake2s.hexdigest()}")
+    check(hashblake2s, wordDict[i])
+    i+=1
+
+def check(hashedWord, plainText):
+  if hashedWord.hexdigest()==Hash:  
+    print(f"Hash cracked, your hash for {hashedWord.hexdigest()} is: {plainText}")
+    sys.exit(0)
+
+if sys.argv[1]=="sha3-512":
+  convertTosha3_512()
+if sys.argv[1]=="sha256":
+  convertTosha256()
+if sys.argv[1]=="sha3-256":
+  convertTosha3_256()
+if sys.argv[1]=="shake-256":
+  convertToshake_256()
+if sys.argv[1]=="sha3-224":
+  convertTosha3_224()
+if sys.argv[1]=="sha1":
+  convertTosha1()
+if sys.argv[1]=="blake2b":
+  convertToblake2b()
+if sys.argv[1]=="sha512":
+  convertTosha512()
+if sys.argv[1]=="md5":
+  convertTomd5()
+if sys.argv[1]=="shake-128":
+  convertToshake_128()
+if sys.argv[1]=="sha384":
+  convertTosha384()
+if sys.argv[1]=="sha224":
+  convertTosha224()
+if sys.argv[1]=="sha3-384":
+  convertTosha3_384()
+if sys.argv[1]=="blake2s":
+  convertToblake2s()
+print("error: check inputs and try again")
